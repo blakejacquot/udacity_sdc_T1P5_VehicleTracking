@@ -73,6 +73,19 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 
 ![alt text][image2]
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 ####2. Explain how you settled on your final choice of HOG parameters.
 
 I tried various combinations of parameters and...

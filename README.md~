@@ -3,22 +3,16 @@
 
 ## Notes
 
-Links for training images of [cars](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip) and [non-cars](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip).
+Links for training images of
+[cars](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip) and
+[non-cars](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip).
 
-Big concepts covered in this unit:
-
+### Big concepts covered in this unit:
 Supervised learning classifiers.
 -Linear decision surface: Just a simple line on scatter plot.
 -Naive Bayes: Curvy-ish line on scatter plot.
 -Support Vector Machine: Maximizes margin (seems sort of like MSE). Good for non-linear classification with kernel trick, resulting in new variable.
 -Decision Trees: Make clumpy x-y scatterplot linearly separable by taking it in stages. Prone to overfitting.
-
-
-*****************************************
-*****************************************
-*****************************************
-*****************************************
-*****************************************
 
 ---
 

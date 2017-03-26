@@ -1,5 +1,12 @@
 # udacity_sdc_T1P5_VehicleTracking
 
+
+## Notes
+
+Links for training images of
+[cars](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip) and
+[non-cars](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip).
+
 Big concepts covered in this unit:
 
 Supervised learning classifiers.

@@ -1,5 +1,24 @@
 """
-    Docstring
+
+Example usage:
+  python main.py 0 --verbosity 0 --proc_path ./test_images
+  python main.py 1 --verbosity 1 --proc_path ./
+
+
+
+Pipeline:
+In each frame look for vehicles with sliding window technique.
+Record every position with a positive ID on car
+If windows overlap, assign position of detection to the centroid.
+Filter out false positives by comparing one frame to the next
+Estimate how centroid is moving frame to frame
+
+First, Decide what features to use: probably something color and gradient based, b
+Second, choose and train a classifier. SVM is prbably best for speed and accuracy
+Third, implement sliding window technique to search for vehicles in test images. Try multiscale and  tilting schemes
+to see what works best. But minimize the number of search windows (don't search sky)
+Fourth, try on video and reject spurious detections
+
 """
 
 # Import standard libraries
@@ -13,6 +32,8 @@
 
 from moviepy.editor import VideoFileClip
 
+
+import helper_functions
 
 import argparse
 import cv2
@@ -59,6 +80,8 @@ def main(image_or_vid, verbosity, proc_path):
         in_clip = VideoFileClip("project_video.mp4")
         out_clip = in_clip.fl_image(proc_video_pipeline)
         out_clip.write_videofile(output, audio=False)
+
+    helper_functions.hello_world()
 
 
 if __name__ == "__main__":

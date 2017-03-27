@@ -85,12 +85,34 @@ def main(args):
         f.savefig(out_path, bbox_inches='tight', format='png')
 
 
+        img_car0_YCrCb = helper_functions.convert_color(img_car_0, conv='RGB2YCrCb')
+        img_notcar0_YCrCb = helper_functions.convert_color(img_notcar_0, conv='RGB2YCrCb')
+
 
 #        helper_functions.get_hog_features(img, orient, pix_per_cell, cell_per_block,
 #                        vis=False, feature_vec=True)
 
 
+        f, ((ax0, ax1), (ax2, ax3), (ax4, ax5), (ax6, ax7)) = plt.subplots(4, 2, figsize = (30, 12))
+        ax0.imshow(img_car_0)
+        ax0.set_title('Car')
 
+        ax1.imshow(img_car_0)
+        ax1.set_title('HOG')
+
+        ax2.imshow(img_car0_YCrCb[:,:,0])
+        ax2.set_title('Y channel')
+
+        ax4.imshow(img_car0_YCrCb[:,:,0])
+        ax4.set_title('Cr channel')
+
+        ax6.imshow(img_car0_YCrCb[:,:,0])
+        ax6.set_title('Cb channel')
+
+
+
+        out_path = os.path.join('./output_images', 'car_features' + '.png')
+        f.savefig(out_path, bbox_inches='tight', format='png')
 
 
 

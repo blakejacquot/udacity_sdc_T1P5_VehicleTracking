@@ -69,26 +69,25 @@ def main(args):
         print('Demonstrating histogram of gradients (HOG)')
         #helper_functions.demo_HOG(args)
         image_demo_path = './images_pipeline_demo' # Hardcoded path
-        search_phrase = os.path.join(image_demo_path, '*.png')
-        images = glob.glob(search_phrase)
-        image_list = []
-        image_name_list = []
-        for fname in images:
-            img = cv2.imread(fname)
-            print(fname)
-            curr_name = fname[-19:-4]
-            print(curr_name)
-            image_list.append(img)
-            image_name_list.append(curr_name)
+        image_car_0 = os.path.join(image_demo_path, 'image_car_0.png')
+        image_notcar_0 = os.path.join(image_demo_path, 'image_notcar_0.png')
 
+        img_car_0 = cv2.imread(image_car_0)
+        img_notcar_0 = cv2.imread(image_notcar_0)
+
+        # Make base figure
         f, ((ax0, ax1)) = plt.subplots(1, 2, figsize = (30, 12))
-        ax0.imshow(image_list[0])
-        ax0.set_title(image_name_list[0])
-        ax1.imshow(image_list[1])
-        ax1.set_title(image_name_list[1])
-        plt.show()
+        ax0.imshow(img_car_0)
+        ax0.set_title('Car')
+        ax1.imshow(img_notcar_0)
+        ax1.set_title('Not Car')
         out_path = os.path.join('./output_images', 'car_not_car' + '.png')
         f.savefig(out_path, bbox_inches='tight', format='png')
+
+
+
+#        helper_functions.get_hog_features(img, orient, pix_per_cell, cell_per_block,
+#                        vis=False, feature_vec=True)
 
 
 

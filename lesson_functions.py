@@ -45,10 +45,3 @@ def color_hist(img, nbins=32):    #bins_range=(0, 256)
     # Return the individual histograms, bin_centers and feature vector
     return hist_features
 
-
-def hello_world():
-    print('Hello world')
-
-
-def demo_HOG(args):
-    print('Demo the HOG')

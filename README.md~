@@ -1,11 +1,13 @@
 # udacity_sdc_T1P5_VehicleTracking
 
-
 ## Notes
 
-Links for training images of
+Links for labeled training images of
 [cars](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip) and
 [non-cars](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip).
+
+The images come from GTI vehicle image database, KITTI vision benchmark suite, and examples
+extracted from the project video.
 
 ### Big concepts covered in this unit:
 Supervised learning classifiers.
@@ -42,6 +44,9 @@ reject outliers and follow detected vehicles. (NOT DONE)
 [image6]: ./examples/labels_map.png
 [image7]: ./examples/output_bboxes.png
 [video1]: ./project_video.mp4
+[im1]: ./output_images/car_not_car.png
+
+
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 
@@ -60,6 +65,13 @@ You are reading it.
 ### Histogram of Oriented Gradients (HOG)
 
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
+
+Example 'Car' and 'Not-Car' images.
+![alt text][im1]
+
+
+
+
 
 The code for this step is contained in the first code cell of the IPython notebook (or in lines # through # of the file called `some_file.py`).
 

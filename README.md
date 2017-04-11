@@ -72,39 +72,38 @@ You are reading it.
 
 HOG features are extracted from images in helper_functions.py
 
-`
     def get_hog_features(img, orient, pix_per_cell, cell_per_block,
                         vis=False, feature_vec=True):
-    """
+        """
 
-    Args:
-        image: (M, N) array
-        orient: Number of orientation bins
-        pix_per_cell: Size (in pixels) of a cell
-        cells_per_block: Number of cells in each block
-        vis: Boolean. Visualize HOG.
-        feature_vec: TBD
+        Args:
+            image: (M, N) array
+            orient: Number of orientation bins
+            pix_per_cell: Size (in pixels) of a cell
+            cells_per_block: Number of cells in each block
+            vis: Boolean. Visualize HOG.
+            feature_vec: TBD
 
-    Returns:
-        features: ndarray which is HOG for the image as 1D (flattened) array.
-        hog_image: ndarray which is visualization of HOG image
-    """
-    # Call with two outputs if vis==True
-    if vis == True:
-        features, hog_image = hog(img, orientations=orient,
-                                  pixels_per_cell=(pix_per_cell, pix_per_cell),
-                                  cells_per_block=(cell_per_block, cell_per_block),
-                                  transform_sqrt=False,
-                                  visualise=vis, feature_vector=feature_vec)
-        return features, hog_image
-    # Otherwise call with one output
-    else:
-        features = hog(img, orientations=orient,
-                       pixels_per_cell=(pix_per_cell, pix_per_cell),
-                       cells_per_block=(cell_per_block, cell_per_block),
-                       transform_sqrt=False,
-                       visualise=vis, feature_vector=feature_vec)
-        return features`
+        Returns:
+            features: ndarray which is HOG for the image as 1D (flattened) array.
+            hog_image: ndarray which is visualization of HOG image
+        """
+        # Call with two outputs if vis==True
+        if vis == True:
+            features, hog_image = hog(img, orientations=orient,
+                                      pixels_per_cell=(pix_per_cell, pix_per_cell),
+                                      cells_per_block=(cell_per_block, cell_per_block),
+                                      transform_sqrt=False,
+                                      visualise=vis, feature_vector=feature_vec)
+            return features, hog_image
+        # Otherwise call with one output
+        else:
+            features = hog(img, orientations=orient,
+                           pixels_per_cell=(pix_per_cell, pix_per_cell),
+                           cells_per_block=(cell_per_block, cell_per_block),
+                           transform_sqrt=False,
+                           visualise=vis, feature_vector=feature_vec)
+            return features
 
 Below are examples of running this on an image with and without car.
 

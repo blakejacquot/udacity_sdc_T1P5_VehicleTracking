@@ -91,33 +91,68 @@ def main(args):
         img_notcar0_YCrCb = helper_functions.convert_color(img_notcar_0, conv='RGB2YCrCb')
         #Here is an example using the YCrCb color space and HOG parameters of orientations=8, pixels_per_cell=(8, 8) and cells_per_block=(2, 2):
 
-        # Calculate HOG features
+        # Set up HOG variables
         orientations = 8
         pixels_per_cell = 8
         cells_per_block = 2
+
+        # Get HOG image and feature vector for RBG image
         img_car0_gray = cv2.cvtColor(img_car_0, cv2.COLOR_RGB2GRAY)
         features_car, img_car_0_hog = helper_functions.get_hog_features(img_car0_gray, orientations, pixels_per_cell, cells_per_block, vis=True, feature_vec=True)
-        print(img_car0_gray.shape, img_car_0_hog.shape)
+        print(img_car0_gray.shape, features_car.shape, img_car_0_hog.shape)
+        img_notcar0_gray = cv2.cvtColor(img_notcar_0, cv2.COLOR_RGB2GRAY)
+        features_notcar, img_notcar_0_hog = helper_functions.get_hog_features(img_notcar0_gray, orientations, pixels_per_cell, cells_per_block, vis=True, feature_vec=True)
 
-        # Make figure demonstrating the operations.
-        f, ((ax0, ax1), (ax2, ax3), (ax4, ax5), (ax6, ax7)) = plt.subplots(4, 2, figsize = (15, 15))
+        # Get HOG image and feature vectors for YCrCb image
+        features_Y_car, img_car_0_Y_hog = helper_functions.get_hog_features(img_car0_YCrCb[:,:,0], orientations, pixels_per_cell, cells_per_block, vis=True, feature_vec=True)
+        features_Cr_car, img_car_0_Cr_hog = helper_functions.get_hog_features(img_car0_YCrCb[:,:,1], orientations, pixels_per_cell, cells_per_block, vis=True, feature_vec=True)
+        features_Cb_car, img_car_0_Cb_hog = helper_functions.get_hog_features(img_car0_YCrCb[:,:,2], orientations, pixels_per_cell, cells_per_block, vis=True, feature_vec=True)
+        features_Y_notcar, img_notcar_0_Y_hog = helper_functions.get_hog_features(img_notcar0_YCrCb[:,:,0], orientations, pixels_per_cell, cells_per_block, vis=True, feature_vec=True)
+        features_Cr_notcar, img_notcar_0_Cr_hog = helper_functions.get_hog_features(img_notcar0_YCrCb[:,:,1], orientations, pixels_per_cell, cells_per_block, vis=True, feature_vec=True)
+        features_Cb_notcar, img_notcar_0_Cb_hog = helper_functions.get_hog_features(img_notcar0_YCrCb[:,:,2], orientations, pixels_per_cell, cells_per_block, vis=True, feature_vec=True)
+
+
+        # Make car figure demonstrating the operations.
+        f, ((ax0, ax1), (ax2, ax3), (ax4, ax5), (ax6, ax7)) = plt.subplots(4, 2, figsize = (8, 12))
         ax0.imshow(img_car_0)
         ax0.set_title('RGB Car')
         ax1.imshow(img_car_0_hog)
-        ax1.set_title('HOG for grayscale of RGB')
+        ax1.set_title('HOG image for grayscale of RGB')
         ax2.imshow(img_car0_YCrCb[:,:,0])
         ax2.set_title('Y channel')
-        ax3.imshow(img_car0_YCrCb[:,:,0])
-        ax3.set_title('Y channel')
+        ax3.imshow(img_car_0_Y_hog)
+        ax3.set_title('HOG image for Y channel')
         ax4.imshow(img_car0_YCrCb[:,:,1])
         ax4.set_title('Cr channel')
-        ax5.imshow(img_car0_YCrCb[:,:,1])
-        ax5.set_title('Cr channel')
+        ax5.imshow(img_car_0_Cr_hog)
+        ax5.set_title('HOG image for Cr channel')
         ax6.imshow(img_car0_YCrCb[:,:,2])
         ax6.set_title('Cb channel')
-        ax7.imshow(img_car0_YCrCb[:,:,2])
-        ax7.set_title('Cb channel')
+        ax7.imshow(img_car_0_Cb_hog)
+        ax7.set_title('HOG image for Cb channel')
         out_path = os.path.join('./output_images', 'car_features' + '.png')
+        f.savefig(out_path, bbox_inches='tight', format='png')
+        print('Saved figure ', out_path)
+
+        # Make not car figure demonstrating the operations.
+        f, ((ax0, ax1), (ax2, ax3), (ax4, ax5), (ax6, ax7)) = plt.subplots(4, 2, figsize = (8, 12))
+        ax0.imshow(img_notcar_0)
+        ax0.set_title('RGB Not Car')
+        ax1.imshow(img_notcar_0_hog)
+        ax1.set_title('HOG image for grayscale of RGB')
+        ax2.imshow(img_notcar0_YCrCb[:,:,0])
+        ax2.set_title('Y channel')
+        ax3.imshow(img_notcar_0_Y_hog)
+        ax3.set_title('HOG image for Y channel')
+        ax4.imshow(img_notcar0_YCrCb[:,:,1])
+        ax4.set_title('Cr channel')
+        ax5.imshow(img_notcar_0_Cr_hog)
+        ax5.set_title('HOG image for Cr channel')
+        ax6.imshow(img_notcar0_YCrCb[:,:,2])
+        ax6.set_title('Cb channel')
+        ax7.imshow(img_notcar_0_Cb_hog)
+        ax7.set_title('HOG image for Cb channel')
+        out_path = os.path.join('./output_images', 'notcar_features' + '.png')
         f.savefig(out_path, bbox_inches='tight', format='png')
         print('Saved figure ', out_path)
 

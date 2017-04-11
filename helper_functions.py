@@ -12,6 +12,20 @@ def convert_color(img, conv='RGB2YCrCb'):
 
 def get_hog_features(img, orient, pix_per_cell, cell_per_block,
                         vis=False, feature_vec=True):
+    """
+
+    Args:
+        image: (M, N) array
+        orient: Number of orientation bins
+        pix_per_cell: Size (in pixels) of a cell
+        cells_per_block: Number of cells in each block
+        vis: Boolean. Visualize HOG.
+        feature_vec: TBD
+
+    Returns:
+        features: ndarray which is HOG for the image as 1D (flattened) array.
+        hog_image: ndarray which is visualization of HOG image
+    """
     # Call with two outputs if vis==True
     if vis == True:
         features, hog_image = hog(img, orientations=orient,

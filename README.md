@@ -50,6 +50,7 @@ reject outliers and follow detected vehicles. (NOT DONE)
 [video1]: ./project_video.mp4
 [im1]: ./output_images/car_not_car.png
 [im2]: ./output_images/car_features.png
+[im3]: ./output_images/notcar_features.png
 
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
@@ -73,9 +74,10 @@ Example 'Car' and 'Not-Car' images.
 ![alt text][im1]
 
 Here is the image in 'YCrCb' color space and with HOG parameters.
-![alt text][im2]
+![alt text][im2]![alt text][im3]
 
 
+
 ****
 ****
 ****
@@ -85,6 +87,7 @@ Here is the image in 'YCrCb' color space and with HOG parameters.
 ****
 ****
 ****
+Template text below
 ****
 
 

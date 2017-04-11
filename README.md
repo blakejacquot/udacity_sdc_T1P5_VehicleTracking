@@ -72,7 +72,8 @@ You are reading it.
 
 HOG features are extracted from images in helper_functions.py
 
-`def get_hog_features(img, orient, pix_per_cell, cell_per_block,
+`
+    def get_hog_features(img, orient, pix_per_cell, cell_per_block,
                         vis=False, feature_vec=True):
     """
 

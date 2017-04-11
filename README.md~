@@ -71,8 +71,8 @@ You are reading it.
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
 HOG features are extracted from images in helper_functions.py
-`
-def get_hog_features(img, orient, pix_per_cell, cell_per_block,
+
+`def get_hog_features(img, orient, pix_per_cell, cell_per_block,
                         vis=False, feature_vec=True):
     """
 
@@ -103,8 +103,7 @@ def get_hog_features(img, orient, pix_per_cell, cell_per_block,
                        cells_per_block=(cell_per_block, cell_per_block),
                        transform_sqrt=False,
                        visualise=vis, feature_vector=feature_vec)
-        return features
-`
+        return features`
 
 Below are examples of running this on an image with and without car.
 

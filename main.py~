@@ -142,8 +142,8 @@ if __name__ == "__main__":
     # Make command line parser and add required and optional arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('image_or_vid', type=int, help = '0 = jpg, 1 = mp4') # required
-    parser.add_argument('-v', '--verbosity', help="Increase output verbosity") # optional
+    parser.add_argument('-v', '--verbosity', action = 'store_true', help="Increase output verbosity") # optional
     parser.add_argument('-p', '--proc_path', help="Path to single video or directory of images") # optional
-    parser.add_argument('-d', '--demo_HOG', help="Enable HOG demo") # optional
+    parser.add_argument('-d', '--demo_HOG', action = 'store_true', help="Enable HOG demo") # optional
     args = parser.parse_args()
     main(args)

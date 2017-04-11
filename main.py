@@ -84,6 +84,7 @@ def main(args):
         ax1.set_title('Not Car')
         out_path = os.path.join('./output_images', 'car_not_car' + '.png')
         f.savefig(out_path, bbox_inches='tight', format='png')
+        print('Saved figure ', out_path)
 
         # Convert color space
         img_car0_YCrCb = helper_functions.convert_color(img_car_0, conv='RGB2YCrCb')
@@ -118,6 +119,7 @@ def main(args):
         ax7.set_title('Cb channel')
         out_path = os.path.join('./output_images', 'car_features' + '.png')
         f.savefig(out_path, bbox_inches='tight', format='png')
+        print('Saved figure ', out_path)
 
     if args.image_or_vid == 0: # Image
         search_phrase = os.path.join(args.proc_path, '*.png')

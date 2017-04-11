@@ -1,5 +1,5 @@
+*******************************************************************************************
 Sample code template matching:
-
 
 import numpy as np
 import cv2
@@ -58,6 +58,23 @@ result = draw_boxes(image, bboxes)
 plt.imshow(result)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************************************************************************
 Sample cade: Histograms of color
 import numpy as np
 import cv2
@@ -102,6 +119,21 @@ else:
     print('Your function is returning None for at least one variable...')
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************************************************************************
 Sample code: Explore color space
 import cv2
 import numpy as np
@@ -156,6 +188,22 @@ plt.show()
 plot3d(img_small_HSV, img_small_rgb, axis_labels=list("HSV"))
 plt.show()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************************************************************************
 
 Example code: Spatial binning of color
 import numpy as np
@@ -263,6 +311,20 @@ plt.imshow(notcar_image)
 plt.title('Example Not-car Image')
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************************************************************************
 Example code: HOG from scikit
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
@@ -322,6 +384,10 @@ plt.title('HOG Visualization')
 
 
 
+
+
+
+*******************************************************************************************
 # Example: combine and normalize features:
 
 import numpy as np
@@ -421,6 +487,20 @@ else:
     print('Your function only returns empty feature vectors...')
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************************************************************************
 # Example code sliding window implementation
 
 
@@ -469,6 +549,23 @@ def slide_window(img, x_start_stop=[None, None], y_start_stop=[None, None],
     return window_list
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************************************************************************
 """Example code: Search and classify"""
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
@@ -694,6 +791,18 @@ window_img = draw_boxes(draw_image, hot_windows, color=(0, 0, 255), thick=6)
 plt.imshow(window_img)
 
 
+
+
+
+
+
+
+
+
+
+
+
+*******************************************************************************************
 """Hog subsampling"""
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
@@ -788,6 +897,17 @@ plt.imshow(out_img)
 
 
 
+
+
+
+
+
+
+
+
+
+
+*******************************************************************************************
 """False positives and heat maps"""
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
@@ -857,6 +977,7 @@ plt.subplot(122)
 plt.imshow(heatmap, cmap='hot')
 plt.title('Heat Map')
 fig.tight_layout()
+
 
 
 

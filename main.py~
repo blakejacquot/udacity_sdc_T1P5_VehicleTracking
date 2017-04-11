@@ -65,17 +65,18 @@ def main(args):
     Docstring
     """
 
-    if args.demo_HOG == 1:
+    if args.demo_HOG:
         print('Demonstrating histogram of gradients (HOG)')
         #helper_functions.demo_HOG(args)
+
+        # Set up variables for demo images
         image_demo_path = './images_pipeline_demo' # Hardcoded path
         image_car_0 = os.path.join(image_demo_path, 'image_car_0.png')
         image_notcar_0 = os.path.join(image_demo_path, 'image_notcar_0.png')
-
         img_car_0 = cv2.imread(image_car_0)
         img_notcar_0 = cv2.imread(image_notcar_0)
 
-        # Make base figure
+        # Make initial figure for inclusion in readme
         f, ((ax0, ax1)) = plt.subplots(1, 2, figsize = (30, 12))
         ax0.imshow(img_car_0)
         ax0.set_title('Car')
@@ -84,30 +85,39 @@ def main(args):
         out_path = os.path.join('./output_images', 'car_not_car' + '.png')
         f.savefig(out_path, bbox_inches='tight', format='png')
 
-
+        # Convert color space
         img_car0_YCrCb = helper_functions.convert_color(img_car_0, conv='RGB2YCrCb')
         img_notcar0_YCrCb = helper_functions.convert_color(img_notcar_0, conv='RGB2YCrCb')
+        #Here is an example using the YCrCb color space and HOG parameters of orientations=8, pixels_per_cell=(8, 8) and cells_per_block=(2, 2):
 
+        # Calculate HOG features
+        orientations = 8
+        pixels_per_cell = 8
+        cells_per_block = 2
+        img_car0_gray = cv2.cvtColor(img_car_0, cv2.COLOR_RGB2GRAY)
+        features_car, img_car_0_hog = helper_functions.get_hog_features(img_car0_gray, orientations, pixels_per_cell, cells_per_block, vis=True, feature_vec=True)
+        print(img_car0_gray.shape, img_car_0_hog.shape)
 
-#        helper_functions.get_hog_features(img, orient, pix_per_cell, cell_per_block,
-#                        vis=False, feature_vec=True)
-
-
-
-        f, ((ax0, ax1), (ax2, ax3), (ax4, ax5), (ax6, ax7)) = plt.subplots(4, 2, figsize = (30, 12))
+        # Make figure demonstrating the operations.
+        f, ((ax0, ax1), (ax2, ax3), (ax4, ax5), (ax6, ax7)) = plt.subplots(4, 2, figsize = (15, 15))
         ax0.imshow(img_car_0)
-        ax0.set_title('Car')
-        ax1.imshow(img_car_0)
-        ax1.set_title('HOG')
+        ax0.set_title('RGB Car')
+        ax1.imshow(img_car_0_hog)
+        ax1.set_title('HOG for grayscale of RGB')
+        ax2.imshow(img_car0_YCrCb[:,:,0])
+        ax2.set_title('Y channel')
+        ax3.imshow(img_car0_YCrCb[:,:,0])
+        ax3.set_title('Y channel')
+        ax4.imshow(img_car0_YCrCb[:,:,1])
+        ax4.set_title('Cr channel')
+        ax5.imshow(img_car0_YCrCb[:,:,1])
+        ax5.set_title('Cr channel')
+        ax6.imshow(img_car0_YCrCb[:,:,2])
+        ax6.set_title('Cb channel')
+        ax7.imshow(img_car0_YCrCb[:,:,2])
+        ax7.set_title('Cb channel')
         out_path = os.path.join('./output_images', 'car_features' + '.png')
         f.savefig(out_path, bbox_inches='tight', format='png')
-
-
-
-
-
-
-
 
     if args.image_or_vid == 0: # Image
         search_phrase = os.path.join(args.proc_path, '*.png')
@@ -129,25 +139,11 @@ def main(args):
 
 
 if __name__ == "__main__":
-
     # Make command line parser and add required and optional arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('image_or_vid', type=int, help = '0 = jpg, 1 = mp4') # required
-    parser.add_argument('-v', '--verbosity', type=int, help="Increase output verbosity") # optional
+    parser.add_argument('-v', '--verbosity', help="Increase output verbosity") # optional
     parser.add_argument('-p', '--proc_path', help="Path to single video or directory of images") # optional
-    parser.add_argument('-d', '--demo_HOG', type=int, help="0 or 1") # optional
-
+    parser.add_argument('-d', '--demo_HOG', help="Enable HOG demo") # optional
     args = parser.parse_args()
-
-    # Set internal variables based on arguments.
-    #if args.image_or_vid == 0:
-    #    print('Processing jpg')
-    #else:
-    #    print('Processing mp4')
-
-    #if args.verbosity == 1:
-    #    print('Verbosity turned on')
-    #else:
-    #    print('Verbosity turned off')
-
     main(args)

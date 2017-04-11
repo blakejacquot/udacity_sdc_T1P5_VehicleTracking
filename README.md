@@ -1,5 +1,9 @@
 # udacity_sdc_T1P5_VehicleTracking
 
+## Example Usage
+
+    python main.py 0 -v -p /Users/blakejacquot/Desktop/temp/training_images/single_images -d
+
 ## Notes
 
 Links for labeled training images of

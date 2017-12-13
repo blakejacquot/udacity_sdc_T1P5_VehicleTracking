@@ -4,9 +4,9 @@ In this project, the goal is to write a software pipeline to detect vehicles in 
 
 [//]: # (Image References)
 [image1]: ./examples/hog_img.png
-[image2]: ./examples/allboxes.jpg
-[image3]: ./examples/heatmap.jpg
-[image4]: ./examples/culled.jpg
+[image2]: ./examples/allboxes.png
+[image3]: ./examples/heatmap.png
+[image4]: ./examples/culled.png
 
 [image5]: ./examples/bboxes_and_heat.png
 [image6]: ./examples/labels_map.png

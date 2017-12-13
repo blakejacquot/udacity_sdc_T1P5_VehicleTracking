@@ -4,6 +4,7 @@ In this project, the goal is to write a software pipeline to detect vehicles in 
 
 [//]: # (Image References)
 [image1]: ./examples/hog_img.png
+
 [image2]: ./examples/HOG_example.jpg
 [image3]: ./examples/sliding_windows.jpg
 [image4]: ./examples/sliding_window.jpg
@@ -25,25 +26,20 @@ The goals / steps of this project are the following:
 
 # Writeup
 
-Code is found in `workspace.ipynb`. 
+Code is found in [workspace.ipynb](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/workspace.ipynb).
 
-All functions are found in `helper_functions.py`.
+All functions are found in [helper_functions.py](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/helper_functions.py).
 
 ---
 
 ### Histogram of Oriented Gradients (HOG)
 
-#### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
-
 I started by reading in all the `vehicle` and `non-vehicle` images.
 
 `get_hog_features()` processes on a single channel. I found that `YCrCb` color space worked OK for classification. HOG is processed on each channel separately.
 
-#### 2. Explain how you settled on your final choice of HOG parameters.
-
 I tried various parameters and found the following worked well. Since I also used color histogram features and spatial features, I'm including all parameters below.
 
-`
 colorspace='YCrCb' # RGB, HSV, LUV, HLS, YUV, YCrCb  
 orient=9  
 pix_per_cell=8  
@@ -52,52 +48,26 @@ hog_channel='ALL'
 spatial_size=(16, 16)  
 hist_bins=16  
 hist_range=(0, 256)  
-`
 
 Here is an example of converting a car image to `YCrCb` and then processing HOG.
 
 ![alt text][image1]
 
-#### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
-
 I trained a linear SVM in `train_test_svm`. It returns the model and scaling parameters.
 
 ### Sliding Window Search
 
-#### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
+Sliding window search is implemented as part of `find_cars()`. It is similar to that used in the lessons. I didn't use any overlap and instead divided the searchable area into even 64x64 squares. I didn't search in the skyline to try and speed up the process.
 
-I decided to search random window positions at random scales all over the image and came up with this (ok just kidding I didn't actually ;):
-
-![alt text][image3]
-
-#### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
-
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here is an example image.
-
-![alt text][image4]
 ---
 
 ### Video Implementation
 
-#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](./project_video.mp4)
-
-
-#### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
+Here's a [link to my video result](./project_out.mp4)
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
-
-### Here are six frames and their corresponding heatmaps:
-
-![alt text][image5]
-
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
-![alt text][image6]
-
-### Here the resulting bounding boxes are drawn onto the last frame in the series:
-![alt text][image7]
 
 
 
@@ -105,8 +75,4 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ### Discussion
 
-#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
-
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
-
-
+I initially trained using grayscale for HOG and HSV for color histogram and spatial features. Though I got good results for the training images, when I got to jpg from the video, things didn't perform well. I'm not sure why, but I got much better results with YCrCb.

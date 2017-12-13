@@ -2,6 +2,16 @@
 
 In this project, the goal is to write a software pipeline to detect vehicles in a video.
 
+[//]: # (Image References)
+[image1]: ./examples/hog_img.png
+[image2]: ./examples/HOG_example.jpg
+[image3]: ./examples/sliding_windows.jpg
+[image4]: ./examples/sliding_window.jpg
+[image5]: ./examples/bboxes_and_heat.png
+[image6]: ./examples/labels_map.png
+[image7]: ./examples/output_bboxes.png
+[video1]: ./project_video.mp4
+
 ---
 
 The goals / steps of this project are the following:
@@ -15,7 +25,7 @@ The goals / steps of this project are the following:
 
 # Writeup
 
-Code is found [here][TBD].
+Code is found in [workspace.ipynb]['https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/workspace.ipynb']. All functions are found in [helper_functions.py]['https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/helper_functions.py'].
 
 ---
 
@@ -23,28 +33,32 @@ Code is found [here][TBD].
 
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
+I started by reading in all the `vehicle` and `non-vehicle` images.
 
-
-The code for this step is contained in the first code cell of the IPython notebook (or in lines # through # of the file called `some_file.py`).  
-
-I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
-
-![alt text][image1]
-
-I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
-
-Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
-
-
-![alt text][image2]
+`get_hog_features()` processes on a single channel. I found that `YCrCb` color space worked OK for classification. HOG is processed on each channel separately.
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and...
+I tried various parameters and found the following worked well. Since I also used color histogram features and spatial features, I'm including all parameters below.
+
+`
+colorspace='YCrCb' # RGB, HSV, LUV, HLS, YUV, YCrCb
+orient=9
+pix_per_cell=8
+cell_per_block=2
+hog_channel='ALL'
+spatial_size=(16, 16)
+hist_bins=16
+hist_range=(0, 256)
+`
+
+Here is an example of converting a car image to `YCrCb` and then processing HOG.
+
+![alt text][image1]
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using...
+I trained a linear SVM in `train_test_svm`. It returns the model and scaling parameters.
 
 ### Sliding Window Search
 
@@ -56,7 +70,7 @@ I decided to search random window positions at random scales all over the image 
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here is an example image.
 
 ![alt text][image4]
 ---

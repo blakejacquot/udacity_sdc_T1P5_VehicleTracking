@@ -61,9 +61,9 @@ Sliding window search is implemented as part of `find_cars()`. It is similar to 
 
 Below are examples of all positive IDs for boxes, corresponding heatmap, and results after thresholding.
 
-![alt text][image2]
-![alt text][image3]
-![alt text][image4]
+![alt text][image2]  
+![alt text][image3]  
+![alt text][image4]  
 ---
 
 ### Video Implementation

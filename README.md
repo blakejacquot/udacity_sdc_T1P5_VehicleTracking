@@ -4,10 +4,10 @@ In this project, the goal is to write a software pipeline to detect vehicles in 
 
 [//]: # (Image References)
 [image1]: ./examples/hog_img.png
+[image2]: ./examples/allboxes.jpg
+[image3]: ./examples/heatmap.jpg
+[image4]: ./examples/culled.jpg
 
-[image2]: ./examples/HOG_example.jpg
-[image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
 [image5]: ./examples/bboxes_and_heat.png
 [image6]: ./examples/labels_map.png
 [image7]: ./examples/output_bboxes.png
@@ -57,19 +57,18 @@ I trained a linear SVM in `train_test_svm`. It returns the model and scaling par
 
 ### Sliding Window Search
 
-Sliding window search is implemented as part of `find_cars()`. It is similar to that used in the lessons. I didn't use any overlap and instead divided the searchable area into even 64x64 squares. I didn't search in the skyline to try and speed up the process.
+Sliding window search is implemented as part of `find_cars()`. It is similar to that used in the lessons. I searched with 64x64 squares with some overlap. I didn't search in the skyline to try and speed up the process.
 
+Below are examples of all positive IDs for boxes, corresponding heatmap, and results after thresholding.
+
+![alt text][image2]
+![alt text][image3]
+![alt text][image4]
 ---
 
 ### Video Implementation
 
 Here's a [link to my video result](./project_out.mp4)
-
-I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
-
-Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
-
-
 
 ---
 

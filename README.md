@@ -25,7 +25,9 @@ The goals / steps of this project are the following:
 
 # Writeup
 
-Code is found in [workspace.ipynb]['https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/workspace.ipynb']. All functions are found in [helper_functions.py]['https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/helper_functions.py'].
+Code is found in ['https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/workspace.ipynb'][workspace.ipynb]. 
+
+All functions are found in ['https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/helper_functions.py'][helper_functions.py].
 
 ---
 

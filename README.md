@@ -25,9 +25,9 @@ The goals / steps of this project are the following:
 
 # Writeup
 
-Code is found in ['https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/workspace.ipynb'][workspace.ipynb]. 
+Code is found in `workspace.ipynb`. 
 
-All functions are found in ['https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/helper_functions.py'][helper_functions.py].
+All functions are found in `helper_functions.py`.
 
 ---
 
@@ -44,14 +44,14 @@ I started by reading in all the `vehicle` and `non-vehicle` images.
 I tried various parameters and found the following worked well. Since I also used color histogram features and spatial features, I'm including all parameters below.
 
 `
-colorspace='YCrCb' # RGB, HSV, LUV, HLS, YUV, YCrCb
-orient=9
-pix_per_cell=8
-cell_per_block=2
-hog_channel='ALL'
-spatial_size=(16, 16)
-hist_bins=16
-hist_range=(0, 256)
+colorspace='YCrCb' # RGB, HSV, LUV, HLS, YUV, YCrCb  
+orient=9  
+pix_per_cell=8  
+cell_per_block=2  
+hog_channel='ALL'  
+spatial_size=(16, 16)  
+hist_bins=16  
+hist_range=(0, 256)  
 `
 
 Here is an example of converting a car image to `YCrCb` and then processing HOG.

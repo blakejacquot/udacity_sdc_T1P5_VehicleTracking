@@ -23,9 +23,9 @@ The goals / steps of this project are the following:
 
 # Writeup
 
-Code is found in [Vehicle-Detection.ipynb](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/Vehicle-Detection.ipynb). There some comments along the way. I tried to structure the flow to be self explanatory.
+Code is found in [Vehicle-Detection.ipynb](./Vehicle-Detection.ipynb). There some comments along the way. I tried to structure the flow to be self explanatory.
 
-Functions are found in [helperfunctions.py](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/helperfunctions.py) and [lesson_functions.py](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/lesson_functions.py).
+Functions are found in [helperfunctions.py](./helperfunctions.py) and [lesson_functions.py](./lesson_functions.py).
 
 ---
 
@@ -81,7 +81,8 @@ scale = 1.5
 
 ### Video Implementation
 
-Here's a [link to my video result](./project_out.mp4)
+Here's a [link to my video result](./project_video_out.mp4)
+
 
 ---
 

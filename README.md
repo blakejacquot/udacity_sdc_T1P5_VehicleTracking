@@ -23,7 +23,7 @@ The goals / steps of this project are the following:
 
 # Writeup
 
-Code is found in [Vehicle-Detection.ipynb.ipynb](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/Vehicle-Detection.ipynb.ipynb).
+Code is found in [Vehicle-Detection.ipynb](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/Vehicle-Detection.ipynb).
 
 Functions are found in [helperfunctions.py](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/helperfunctions.py) and [lesson_functions.py](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/lesson_functions.py).
 
@@ -35,17 +35,6 @@ I started by reading in all the `vehicle` and `non-vehicle` images.
 
 `get_hog_features()` processes on a single channel. I found that `YCrCb` color space worked OK for classification. HOG is processed on each channel separately.
 
-I tried various parameters and found the following worked well. Since I also used color histogram features and spatial features, I'm including all parameters below.
-
-colorspace='YCrCb' # RGB, HSV, LUV, HLS, YUV, YCrCb  
-orient=9  
-pix_per_cell=8  
-cell_per_block=2  
-hog_channel='ALL'  
-spatial_size=(16, 16)  
-hist_bins=16  
-hist_range=(0, 256)  
-
 Here is an example of converting a car image to `YCrCb` and then processing HOG.
 
 ![alt text][image1]
@@ -54,7 +43,7 @@ I trained a linear SVM in `train_test_svm`. It returns the model and scaling par
 
 ### Sliding Window Search
 
-Sliding window search is implemented as part of `find_cars()`. It is similar to that used in the lessons. I searched with 64x64 squares with some overlap. I didn't search in the skyline to try and speed up the process.
+Sliding window search is implemented as part of `find_cars()`.
 
 Below are examples of all positive IDs for boxes, corresponding heatmap, and results after thresholding.
 

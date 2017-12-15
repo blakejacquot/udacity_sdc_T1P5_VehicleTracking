@@ -23,7 +23,7 @@ The goals / steps of this project are the following:
 
 # Writeup
 
-Code is found in [Vehicle-Detection.ipynb](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/Vehicle-Detection.ipynb).
+Code is found in [Vehicle-Detection.ipynb](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/Vehicle-Detection.ipynb). There some comments along the way. I tried to structure the flow to be self explanatory.
 
 Functions are found in [helperfunctions.py](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/helperfunctions.py) and [lesson_functions.py](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/lesson_functions.py).
 
@@ -44,10 +44,10 @@ I trained a linear SVM in `train_test_svm`. It returns the model and scaling par
 ### Sliding Window Search
 
 Sliding window search is implemented as part of `find_cars()`.
+![alt text][image2]  
+
 
 Below are examples of all positive IDs for boxes, corresponding heatmap, and results after thresholding.
-
-![alt text][image2]  
 ![alt text][image3]  
 ![alt text][image4]  
 
@@ -87,3 +87,5 @@ Here's a [link to my video result](./project_out.mp4)
 ### Discussion
 
 I initially trained using grayscale for HOG and HSV for color histogram and spatial features. Though I got good results for the training images, when I got to jpg from the video, things didn't perform well. I'm not sure why, but I got much better results with YCrCb.
+
+My car ID doesn't work very well as the cars tend toward the horizon. A solution I did not implement may be to search more intensely or at different scales below a certain y value.

@@ -59,7 +59,6 @@ hist_bins=32
 hist_range=(0, 256)
 channel = 'ALL'
 
-# HOG parameter
 orient = 9 # HOG orientations  
 pix_per_cell = 8  #HOG pixels per cell  
 cell_per_block = 2 # HOG cells per block. Normalization happens over block.  

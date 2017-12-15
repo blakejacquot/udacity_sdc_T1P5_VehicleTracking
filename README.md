@@ -50,6 +50,33 @@ Below are examples of all positive IDs for boxes, corresponding heatmap, and res
 ![alt text][image2]  
 ![alt text][image3]  
 ![alt text][image4]  
+
+### Parameters Used
+
+cspace = 'YCrCb' # Can be RGB, HSV, LUV, HLS, YUV, YCrCb
+spatial_size=(32, 32) # (32,32), (16,16)
+hist_bins=32
+hist_range=(0, 256)
+channel = 'ALL'
+
+# HOG parameter
+orient = 9 # HOG orientations  
+pix_per_cell = 8  #HOG pixels per cell  
+cell_per_block = 2 # HOG cells per block. Normalization happens over block.  
+hog_channel = 'ALL'  
+
+x_start = None  
+x_stop = None  
+y_start = 400  
+y_stop = 656  
+xy_window= (128, 128)  
+xy_overlap=(0.5, 0.5)  
+
+spatial_feat = True  
+hist_feat = True  
+hog_feat = True  
+
+scale = 1.5  
 ---
 
 ### Video Implementation

@@ -3,15 +3,12 @@
 In this project, the goal is to write a software pipeline to detect vehicles in a video.
 
 [//]: # (Image References)
-[image1]: ./examples/hog_img.png
-[image2]: ./examples/allboxes.png
-[image3]: ./examples/heatmap.png
-[image4]: ./examples/culled.png
+[image0]: ./examples/carnotcar.png
+[image1]: ./examples/hogycrcb.png
 
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
-[video1]: ./project_video.mp4
+[image2]: ./examples/searchboxes.png
+[image3]: ./examples/detections.png
+[image4]: ./examples/heatmaps.png
 
 ---
 
@@ -26,9 +23,9 @@ The goals / steps of this project are the following:
 
 # Writeup
 
-Code is found in [workspace.ipynb](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/workspace.ipynb).
+Code is found in [Vehicle-Detection.ipynb.ipynb](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/Vehicle-Detection.ipynb.ipynb).
 
-All functions are found in [helper_functions.py](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/helper_functions.py).
+Functions are found in [helperfunctions.py](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/helperfunctions.py) and [lesson_functions.py](https://github.com/blakejacquot/udacity_sdc_T1P5_VehicleTracking/blob/master/lesson_functions.py).
 
 ---
 

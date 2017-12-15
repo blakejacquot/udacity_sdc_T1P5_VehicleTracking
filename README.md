@@ -76,6 +76,7 @@ hist_feat = True
 hog_feat = True  
 
 scale = 1.5  
+
 ---
 
 ### Video Implementation

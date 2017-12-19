@@ -245,7 +245,7 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
     
     draw_img = np.copy(img)
     img = img.astype(np.float32)/255
-    
+
     img_tosearch = img[ystart:ystop,:,:]
     ctrans_tosearch = convert_color(img_tosearch, conv='RGB2YCrCb')
     if scale != 1:
@@ -260,6 +260,7 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
     nxblocks = (ch1.shape[1] // pix_per_cell)-1
     nyblocks = (ch1.shape[0] // pix_per_cell)-1 
     nfeat_per_block = orient*cell_per_block**2
+    
     # 64 was the orginal sampling rate, with 8 cells and 8 pix per cell
     window = 64
     nblocks_per_window = (window // pix_per_cell)-1 
@@ -273,6 +274,8 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
     hog3 = get_hog_features(ch3, orient, pix_per_cell, cell_per_block, feature_vec=False)
     
     window_list = [] # BCJ added
+    
+    
     
     for xb in range(nxsteps):
         for yb in range(nysteps):
@@ -314,22 +317,22 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
 
     return draw_img, window_list
 
-    window_list = []
-    # Loop through finding x and y window positions
-    # Note: you could vectorize this step, but in practice
-    # you'll be considering windows one by one with your
-    # classifier, so looping makes sense
-    for ys in range(ny_windows):
-        for xs in range(nx_windows):
-            # Calculate window position
-            startx = xs*nx_pix_per_step + x_start_stop[0]
-            endx = startx + xy_window[0]
-            starty = ys*ny_pix_per_step + y_start_stop[0]
-            endy = starty + xy_window[1]
-            # Append window position to list
-            window_list.append(((startx, starty), (endx, endy)))
-    # Return the list of windows
-    return window_list
+#    window_list = []
+#    # Loop through finding x and y window positions
+#    # Note: you could vectorize this step, but in practice
+#    # you'll be considering windows one by one with your
+#    # classifier, so looping makes sense
+#    for ys in range(ny_windows):
+#        for xs in range(nx_windows):
+#            # Calculate window position
+#            startx = xs*nx_pix_per_step + x_start_stop[0]
+#            endx = startx + xy_window[0]
+#            starty = ys*ny_pix_per_step + y_start_stop[0]
+#            endy = starty + xy_window[1]
+#            # Append window position to list
+#            window_list.append(((startx, starty), (endx, endy)))
+#    # Return the list of windows
+#    return window_list
 
 
 

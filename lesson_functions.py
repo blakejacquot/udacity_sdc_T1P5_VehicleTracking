@@ -241,7 +241,9 @@ def search_windows(img, windows, clf, scaler, color_space='RGB',
     return on_windows
 
 # Define a single function that can extract features using hog sub-sampling and make predictions
-def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, cell_per_block, spatial_size, hist_bins):
+def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, cell_per_block, spatial_size, hist_bins, verbose_return = False):
+
+    cells_per_step = 2 # 2  # Instead of overlap, define how many cells to step. Smaller means more overlap
     
     draw_img = np.copy(img)
     img = img.astype(np.float32)/255
@@ -264,7 +266,6 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
     # 64 was the orginal sampling rate, with 8 cells and 8 pix per cell
     window = 64
     nblocks_per_window = (window // pix_per_cell)-1 
-    cells_per_step = 2  # Instead of overlap, define how many cells to step
     nxsteps = (nxblocks - nblocks_per_window) // cells_per_step
     nysteps = (nyblocks - nblocks_per_window) // cells_per_step
     
@@ -274,9 +275,8 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
     hog3 = get_hog_features(ch3, orient, pix_per_cell, cell_per_block, feature_vec=False)
     
     window_list = [] # BCJ added
-    
-    
-    
+    verbose_list = []
+      
     for xb in range(nxsteps):
         for yb in range(nysteps):
             ypos = yb*cells_per_step
@@ -301,7 +301,21 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
             test_features = X_scaler.transform(np.hstack((spatial_features, hist_features, hog_features)).reshape(1, -1))    
             #test_features = X_scaler.transform(np.hstack((shape_feat, hist_feat)).reshape(1, -1))    
             test_prediction = svc.predict(test_features)
-                        
+                       
+            if verbose_return == True:
+                xbox_left = np.int(xleft*scale)
+                ytop_draw = np.int(ytop*scale)
+                win_draw = np.int(window*scale)
+                cv2.rectangle(draw_img,(xbox_left, ytop_draw+ystart),(xbox_left+win_draw,ytop_draw+win_draw+ystart),(0,0,255),6) 
+                
+                # BCJ added
+                startx = xbox_left
+                endx = xbox_left+win_draw
+                starty = ytop_draw+ystart
+                endy = ytop_draw+win_draw+ystart                               
+
+                verbose_list.append(((startx, starty), (endx, endy)))
+                
             if test_prediction == 1:
                 xbox_left = np.int(xleft*scale)
                 ytop_draw = np.int(ytop*scale)
@@ -315,28 +329,11 @@ def find_cars(img, ystart, ystop, scale, svc, X_scaler, orient, pix_per_cell, ce
                 endy = ytop_draw+win_draw+ystart                               
                 window_list.append(((startx, starty), (endx, endy)))
 
-    return draw_img, window_list
-
-#    window_list = []
-#    # Loop through finding x and y window positions
-#    # Note: you could vectorize this step, but in practice
-#    # you'll be considering windows one by one with your
-#    # classifier, so looping makes sense
-#    for ys in range(ny_windows):
-#        for xs in range(nx_windows):
-#            # Calculate window position
-#            startx = xs*nx_pix_per_step + x_start_stop[0]
-#            endx = startx + xy_window[0]
-#            starty = ys*ny_pix_per_step + y_start_stop[0]
-#            endy = starty + xy_window[1]
-#            # Append window position to list
-#            window_list.append(((startx, starty), (endx, endy)))
-#    # Return the list of windows
-#    return window_list
-
-
-
-
+                
+    if verbose_return == True:
+        return draw_img, window_list, verbose_list
+    else:
+        return draw_img, window_list
 
 def add_heat(heatmap, bbox_list):
     # Iterate through list of bboxes
